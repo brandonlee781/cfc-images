@@ -1,0 +1,48 @@
+{% extends "layouts/base.twig" %}
+
+{% block content %}
+<div class="grid-x">
+  <div class="cell medium-6 medium-offset-3 search-bar">
+    <form action="/">
+      <div class="input-group">
+        <span class="input-group-label">
+          <i class="material-icons">search</i>
+        </span>
+        <input
+          type="text"
+          class="input-group-field"
+          placeholder="Search Images"
+          name="q"
+          {% if search %} value="{{ search }}" {% endif %}>
+        <div class="input-group-button">
+          <button class="button" type="submit">Search</button>
+        </div>
+      </div>
+    </form>
+    {% if search %}
+      <button class="close-button clear-search-form-btn" aria-label="Close alert" type="button" onClick="window.location.href='/'">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    {% endif %}
+  </div>
+</div>
+
+<div class="grid-x image-grid">
+  <div class="grid-sizer"></div>
+  {% for image in images %}
+    {% set tags = image.get_field('tags') | replace({' ': ''}) | split(',') %}
+    <div class="cell image-grid-item">
+      <a href="{{ image.link }}" class="thumbnail">
+        <img src="{{ uploadDir.url }}/{{ image.sizes.medium_large.file }}" alt="{{ image.alt }}">
+        {% if image.get_field('tags') %}
+        <div class="tag-list">
+          <span>
+            Tags: {{ image.get_field('tags')|length > 50 ? image.get_field('tags')|slice(0, 50) ~ '...' : image.get_field('tags')  }}
+          </span>
+        </div>
+        {% endif %}
+      </a>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
