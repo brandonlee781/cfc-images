@@ -1,0 +1,23 @@
+{
+  "name": "cfc-images",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "node-sass --watch ./src/scss/style.scss ./style.css",
+    "js": "parcel watch src/js/app.js --no-hmr"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "desandro-matches-selector": "^2.0.2",
+    "ev-emitter": "^1.1.1",
+    "fizzy-ui-utils": "^2.0.7",
+    "foundation-sites": "^6.4.4-rc1",
+    "get-size": "^2.0.3",
+    "node-sass": "^4.8.3",
+    "outlayer": "^2.1.1"
+  }
+}
